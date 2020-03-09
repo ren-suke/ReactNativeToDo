@@ -21,7 +21,7 @@ class AddProject extends Component {
     console.log('onPressProjectImageView');
     ImagePicker.launchImageLibrary({allowsEditing: true}, response => {
       if (response.error) {
-        console.log(error);
+        console.log(response.error);
       } else {
         const imageSource = {uri: response.uri};
         console.log(imageSource);

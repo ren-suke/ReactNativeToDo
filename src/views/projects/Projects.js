@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
+import {getProjects} from '../../store/action_creators/ProjectActionCreator'
 import ProjectsTemplate from './ProjectsTemplate';
 
 export default class Projects extends Component {
@@ -10,11 +12,6 @@ export default class Projects extends Component {
       isEditing: false,
       deleteProjectIDs: [],
     };
-  }
-
-  onClick() {
-    console.log('onclick');
-    this.props.navigation.navigate('Stack2');
   }
 
   onPressEditButton() {}
@@ -45,3 +42,12 @@ export default class Projects extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    projects: state.project.projects
+  }
+}
+
+//delete
+//celltap時

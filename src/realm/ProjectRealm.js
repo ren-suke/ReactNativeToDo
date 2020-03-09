@@ -25,28 +25,23 @@ export async function createProject(newProject) {
     });
 }
 
-export function getProjects() {
+export async function getProjects() {
   Realm.open({schema: [ProjectSchema], schemaVersion: SCHEMA_VERSION})
     .then(realm => {
-      // const projects = realm.objects('Project');
-      // const _projects = Array.from(projects);
-      // console.log(_projects);
-      console.log(realm.path);
-      // realm.close();
-      return realm.objects('Project');
+      const projects = realm.objects('Project');
+      const _projects = Array.from(projects);
+      return _projects;
     })
     .catch(error => {
       console.log(error);
-      return error;
+      throw error;
     });
 }
 
-export function deleteProjects(deleteProjectIDs) {
-  console.log(deleteProjectIDs);
+export async function deleteProjects(deleteProjectIDs) {
   Realm.open({schema: [ProjectSchema], schemaVersion: SCHEMA_VERSION})
     .then(realm => {
       let projects = realm.objects('Project');
-      console.log(projects);
       for (let deleteProjectID of deleteProjectIDs) {
         let deleteProject = projects.filtered(`id = ${deleteProjectID}`);
 
@@ -59,7 +54,7 @@ export function deleteProjects(deleteProjectIDs) {
     })
     .catch(error => {
       console.log(error);
-      return error;
+      throw error;
     });
 }
 
