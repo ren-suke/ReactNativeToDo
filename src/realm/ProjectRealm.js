@@ -9,7 +9,6 @@ export async function createProject(newProject) {
 
   Realm.open({schema: [ProjectSchema], schemaVersion: SCHEMA_VERSION})
     .then(realm => {
-      realm.deleteAll();
       console.log(realm.path);
       realm.write(() => {
         const id = getLatestIdMaximum(realm);
@@ -17,7 +16,7 @@ export async function createProject(newProject) {
         realm.create('Project', newProject);
       });
       const latestObjects = realm.objects('Project');
-      realm.close();
+      // realm.close();
       return Array.from(latestObjects);
     })
     .catch(error => {
@@ -33,7 +32,7 @@ export function getProjects() {
       // const _projects = Array.from(projects);
       // console.log(_projects);
       console.log(realm.path)
-      realm.close();
+      // realm.close();
       return realm.objects('Project');
     })
     .catch(error => {
@@ -55,7 +54,7 @@ export function deleteProjects(deleteProjectIDs) {
           realm.delete(deleteProject[0])
         })
       }
-      realm.close();
+      // realm.close();
       return projects;
     })
     .catch(error => {

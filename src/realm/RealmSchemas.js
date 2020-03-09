@@ -6,7 +6,7 @@ export const ProjectSchema = {
     title: 'string',
     all_tasks_count: { type: 'int', default: 0 },
     completed_tasks_count: { type: 'int', default: 0 },
-    image_uri: 'string',
+    imageUri: 'string',
   }
 }
 

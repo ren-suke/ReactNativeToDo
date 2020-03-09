@@ -13,7 +13,7 @@ class AddProject extends Component {
     this.state = {
       fabDisabled: false,
       projectTitle: '',
-      projectImageURI: '../../ren.png',
+      projectImageSource: require('../../ren.png')
     }
   }
 
@@ -24,11 +24,10 @@ class AddProject extends Component {
       if(response.error) {
         console.log(error);
       } else {
-        console.log(response.uri);
-        const imageURI = { uri: response.uri };
-        console.log(imageURI)
+        const imageSource = { uri: response.uri };
+        console.log(imageSource)
         this.setState({
-          projectImageURI: imageURI
+          projectImageSource: imageSource
         })
       }
     })
@@ -50,14 +49,14 @@ class AddProject extends Component {
 
   onPressFAB = () => {
     const { addProject } = this.props
-    addProject(this.state.projectTitle, this.state.projectImageSouece)
+    addProject(this.state.projectTitle, this.state.projectImageSource)
   }
 
   render() {
     const projectInputView = {
       projectImageView: {
         onPress: () => { this.onPressProjectImageView() },
-        source: { uri: this.state.projectImageURI }
+        source: this.state.projectImageSource
       },
       projectTitleTextInput: {
         onChangeText: text => this.onChangeProjectTitle(text),
@@ -84,7 +83,7 @@ class AddProject extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addProject: (title, imageSouce) => dispatch(addProject(title, imageSouce))
+    addProject: (title, imageSource) => dispatch(addProject(title, imageSource))
   }
 }
 
