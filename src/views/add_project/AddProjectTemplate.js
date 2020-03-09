@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import ProjectInputView from './molecules/ProjectInputView';
-import FAB from '../common/atoms/FAB'
+import FAB from '../common/atoms/FAB';
 
 function AddProjectTemplate(props) {
-  const { projectInputView, fab} = props;
-  return(
+  const {projectInputView, fab} = props;
+  return (
     <View style={styles.addProjectTemplate}>
       <ProjectInputView
         projectImageView={projectInputView.projectImageView}
@@ -19,8 +19,8 @@ function AddProjectTemplate(props) {
 
 const styles = StyleSheet.create({
   addProjectTemplate: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default AddProjectTemplate;

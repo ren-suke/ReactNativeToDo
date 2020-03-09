@@ -4,11 +4,11 @@ export const ProjectSchema = {
   properties: {
     id: 'int',
     title: 'string',
-    all_tasks_count: { type: 'int', default: 0 },
-    completed_tasks_count: { type: 'int', default: 0 },
+    all_tasks_count: {type: 'int', default: 0},
+    completed_tasks_count: {type: 'int', default: 0},
     imageUri: 'string',
-  }
-}
+  },
+};
 
 export const TagSchema = {
   name: 'Tag',
@@ -17,9 +17,9 @@ export const TagSchema = {
     id: 'int',
     project: 'Project',
     title: 'string',
-    tasks: 'Task[]'
-  }
-}
+    tasks: 'Task[]',
+  },
+};
 
 export const TaskSchema = {
   name: 'Task',
@@ -29,6 +29,6 @@ export const TaskSchema = {
     tag: 'Tag',
     title: 'string',
     deadline: 'date',
-    isCompleted: { type: 'bool', default: false }
-  }
-}
+    isCompleted: {type: 'bool', default: false},
+  },
+};

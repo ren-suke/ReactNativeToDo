@@ -1,13 +1,22 @@
 import React from 'react';
 
-import { View, SafeAreaView } from 'react-native'
-import { Container, Header, Content, Left, Right, Body, Title, Button } from 'native-base';
+import {View, SafeAreaView} from 'react-native';
+import {
+  Container,
+  Header,
+  Content,
+  Left,
+  Right,
+  Body,
+  Title,
+  Button,
+} from 'native-base';
 
 import ProjectListView from './organisms/ProjectListView';
 import FAB from '../common/atoms/FAB';
 
 function ProjectsTemplate(props) {
-  return(
+  return (
     <View>
       {/* <Header>
         <Left>
@@ -18,9 +27,9 @@ function ProjectsTemplate(props) {
         </Body>
         <Right />
       </Header> */}
-      <View style={{ flex: 1 }}>
-        <ProjectListView 
-          projects={props.projects} 
+      <View style={{flex: 1}}>
+        <ProjectListView
+          projects={props.projects}
           onPressProjectCell={props.onPressProjectCell}
         />
       </View>

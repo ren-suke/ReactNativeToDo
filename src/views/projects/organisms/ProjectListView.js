@@ -1,16 +1,19 @@
 import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 
 import ProjectCell from '../molecules/ProjectCell';
 
 export default function ProjectListView(props) {
-  const { projects, onPressProjectCell } = props
-  return(
+  const {projects, onPressProjectCell} = props;
+  return (
     <FlatList
-      style={{ flex: 1}}
+      style={{flex: 1}}
       data={projects}
-      renderItem={( project ) => (
-        <ProjectCell project={project} onPressProjectCell={onPressProjectCell} /> 
+      renderItem={project => (
+        <ProjectCell
+          project={project}
+          onPressProjectCell={onPressProjectCell}
+        />
       )}
       keyExtractor={project => project.id.toString()}
     />

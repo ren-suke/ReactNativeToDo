@@ -1,16 +1,28 @@
-import React, {Component} from 'react'
-import { View, Image, StyleSheet, TextInput, ScrollView } from 'react-native'
-import { Container, Header, Content, Left, Body, Right, Button, Icon, Title, Switch, Text } from 'native-base';
-import { List } from 'react-native-paper';
+import React, {Component} from 'react';
+import {View, Image, StyleSheet, TextInput, ScrollView} from 'react-native';
+import {
+  Container,
+  Header,
+  Content,
+  Left,
+  Body,
+  Right,
+  Button,
+  Icon,
+  Title,
+  Switch,
+  Text,
+} from 'native-base';
+import {List} from 'react-native-paper';
 
 export default class ProjectTasks extends Component {
   state = {
-    expanded: true
-  }
+    expanded: true,
+  };
 
   _handlePress = () =>
     this.setState({
-      expanded: !this.state.expanded
+      expanded: !this.state.expanded,
     });
 
   render() {
@@ -21,121 +33,90 @@ export default class ProjectTasks extends Component {
           <Body>
             <Title>タスク一覧</Title>
           </Body>
-          <Right/>
+          <Right />
         </Header>
         <ScrollView>
           <List.Section>
             <List.Accordion
               title="Controlled Accordion"
               left={props => <List.Icon {...props} icon="folder" />}
-              expandedyarn add react-native-paper
-              ={this.state.expanded}
-              onPress={this._handlePress}
-            >
+              expandedyarn
+              add
+              react-native-paper={this.state.expanded}
+              onPress={this._handlePress}>
               {/* <List.Item title="First item" />
               <List.Item title="Second item" /> */}
-              <List.Item
-                title="task title"
-                right={props => <Switch />}
-              />
+              <List.Item title="task title" right={props => <Switch />} />
             </List.Accordion>
             <List.Accordion
               title="Controlled Accordion"
               left={props => <List.Icon {...props} icon="folder" />}
               expanded={this.state.expanded}
-              onPress={this._handlePress}
-            >
+              onPress={this._handlePress}>
               {/* <List.Item title="First item" />
               <List.Item title="Second item" /> */}
-              <List.Item
-                title="task title"
-                right={props => <Switch />}
-              />
+              <List.Item title="task title" right={props => <Switch />} />
             </List.Accordion>
             <List.Accordion
               title="Controlled Accordion"
               left={props => <List.Icon {...props} icon="folder" />}
               expanded={this.state.expanded}
-              onPress={this._handlePress}
-            >
+              onPress={this._handlePress}>
               {/* <List.Item title="First item" />
               <List.Item title="Second item" /> */}
-              <List.Item
-                title="task title"
-                right={props => <Switch />}
-              />
+              <List.Item title="task title" right={props => <Switch />} />
             </List.Accordion>
             <List.Accordion
               title="Controlled Accordion"
               left={props => <List.Icon {...props} icon="folder" />}
               expanded={this.state.expanded}
-              onPress={this._handlePress}
-            >
+              onPress={this._handlePress}>
               {/* <List.Item title="First item" />
               <List.Item title="Second item" /> */}
-              <List.Item
-                title="task title"
-                right={props => <Switch />}
-              />
+              <List.Item title="task title" right={props => <Switch />} />
             </List.Accordion>
             <List.Accordion
               title="Controlled Accordion"
               left={props => <List.Icon {...props} icon="folder" />}
               expanded={this.state.expanded}
-              onPress={this._handlePress}
-            >
+              onPress={this._handlePress}>
               {/* <List.Item title="First item" />
               <List.Item title="Second item" /> */}
-              <List.Item
-                title="task title"
-                right={props => <Switch />}
-              />
+              <List.Item title="task title" right={props => <Switch />} />
             </List.Accordion>
             <List.Accordion
               title="Controlled Accordion"
               left={props => <List.Icon {...props} icon="folder" />}
               expanded={this.state.expanded}
-              onPress={this._handlePress}
-            >
+              onPress={this._handlePress}>
               {/* <List.Item title="First item" />
               <List.Item title="Second item" /> */}
-              <List.Item
-                title="task title"
-                right={props => <Switch />}
-              />
+              <List.Item title="task title" right={props => <Switch />} />
             </List.Accordion>
             <List.Accordion
               title="Controlled Accordion"
               left={props => <List.Icon {...props} icon="folder" />}
               expanded={this.state.expanded}
-              onPress={this._handlePress}
-            >
+              onPress={this._handlePress}>
               {/* <List.Item title="First item" />
               <List.Item title="Second item" /> */}
-              <List.Item
-                title="task title"
-                right={props => <Switch />}
-              />
+              <List.Item title="task title" right={props => <Switch />} />
             </List.Accordion>
             <List.Accordion
               title="Controlled Accordion"
               left={props => <List.Icon {...props} icon="folder" />}
               expanded={this.state.expanded}
-              onPress={this._handlePress}
-            >
+              onPress={this._handlePress}>
               {/* <List.Item title="First item" />
               <List.Item title="Second item" /> */}
-              <List.Item
-                title="task title"
-                right={props => <Switch />}
-              />
+              <List.Item title="task title" right={props => <Switch />} />
             </List.Accordion>
           </List.Section>
         </ScrollView>
 
         <Button style={styles.addProjectButton} />
       </Container>
-    )
+    );
   }
 }
 
@@ -147,7 +128,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: '#4285f4',
     alignSelf: 'center',
-    position: 'absolute'
-    
-  }
+    position: 'absolute',
+  },
 });

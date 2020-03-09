@@ -1,14 +1,37 @@
-import React, {Component} from 'react'
-import { View, Image, StyleSheet, TextInput, Picker, Dimensions } from 'react-native'
+import React, {Component} from 'react';
+import {
+  View,
+  Image,
+  StyleSheet,
+  TextInput,
+  Picker,
+  Dimensions,
+} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-import DatePicker from 'react-native-datepicker'
-import { Container, Header, Content, Left, Body, Right, Button, Icon, Title, Card, CardItem, Text, Grid, Col, Row } from 'native-base';
+import DatePicker from 'react-native-datepicker';
+import {
+  Container,
+  Header,
+  Content,
+  Left,
+  Body,
+  Right,
+  Button,
+  Icon,
+  Title,
+  Card,
+  CardItem,
+  Text,
+  Grid,
+  Col,
+  Row,
+} from 'native-base';
 
 export default class AddTask extends Component {
   state = {
     area: 2,
-    date: "2019-10-10"
-  }
+    date: '2019-10-10',
+  };
 
   render() {
     return (
@@ -19,32 +42,39 @@ export default class AddTask extends Component {
             <Title>タスクを追加</Title>
           </Body>
           <Right>
-            <Icon name='close' />
+            <Icon name="close" />
           </Right>
         </Header>
         <View>
           <View styles={styles.projectInputContainer}>
-            <View>              
-              <TextInput style={styles.projectTitleTextInput} placeholder=" Your Task" />
+            <View>
+              style={styles.projectTitleTextInput}
+              placeholder=" Your Task" />
             </View>
             <Grid>
-              <Row style={{ height: 50}}>
+              <Row style={{height: 50}}>
                 <Col size="2">
-                  <Icon style={{ alignSelf: 'center'}} name="pencil" />
+                  <Icon style={{alignSelf: 'center'}} name="pencil" />
                 </Col>
                 <Col size="3">
-                  <Text style={{ lineHeight: 50, alignSelf: 'flex-start' }} >プロジェクト</Text>
+                  <Text style={{lineHeight: 50, alignSelf: 'flex-start'}}>
+                    プロジェクト
+                  </Text>
                 </Col>
                 <Col size="5">
-                  <Text style={{ lineHeight: 50, alignSelf: 'center' }} >プロジェクト名</Text>
+                  <Text style={{lineHeight: 50, alignSelf: 'center'}}>
+                    プロジェクト名
+                  </Text>
                 </Col>
               </Row>
-              <Row style={{ height: 100}}>
+              <Row style={{height: 100}}>
                 <Col size="2">
-                  <Icon style={{ alignSelf: 'center'}} name="pencil" />
+                  <Icon style={{alignSelf: 'center'}} name="pencil" />
                 </Col>
                 <Col size="3">
-                  <Text style={{ lineHeight: 50, alignSelf: 'flex-start' }} >種類</Text>
+                  <Text style={{lineHeight: 50, alignSelf: 'flex-start'}}>
+                    種類
+                  </Text>
                 </Col>
                 <Col size="5">
                   <Row>
@@ -52,22 +82,24 @@ export default class AddTask extends Component {
                   </Row>
                   <Row>
                     <RNPickerSelect
-                      onValueChange={(value) => console.log(value)}
+                      onValueChange={value => console.log(value)}
                       items={[
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
+                        {label: 'Football', value: 'football'},
+                        {label: 'Baseball', value: 'baseball'},
+                        {label: 'Hockey', value: 'hockey'},
                       ]}
                     />
                   </Row>
                 </Col>
               </Row>
-              <Row style={{ height: 50}}>
+              <Row style={{height: 50}}>
                 <Col size="2">
-                  <Icon style={{ alignSelf: 'center'}} name="pencil" />
+                  <Icon style={{alignSelf: 'center'}} name="pencil" />
                 </Col>
                 <Col size="3">
-                  <Text style={{ lineHeight: 50, alignSelf: 'flex-start' }} >期限</Text>
+                  <Text style={{lineHeight: 50, alignSelf: 'flex-start'}}>
+                    期限
+                  </Text>
                 </Col>
                 <Col size="5">
                   <DatePicker
@@ -83,14 +115,16 @@ export default class AddTask extends Component {
                         position: 'absolute',
                         left: 0,
                         top: 4,
-                        marginLeft: 0
+                        marginLeft: 0,
                       },
                       dateInput: {
-                        marginLeft: 36
-                      }
+                        marginLeft: 36,
+                      },
                       // ... You can check the source to find the other keys.
                     }}
-                    onDateChange={(date) => {this.setState({date: date})}}
+                    onDateChange={date => {
+                      this.setState({date: date});
+                    }}
                   />
                 </Col>
               </Row>
@@ -99,33 +133,33 @@ export default class AddTask extends Component {
         </View>
         <Button style={styles.addProjectButton} />
       </Container>
-    )
+    );
   }
 }
 
-const { width, height } = Dimensions.get('window');
-const halfHeight = height/2;
+const {width, height} = Dimensions.get('window');
+const halfHeight = height / 2;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   projectInputContainer: {
     width: width,
     height: halfHeight,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   projectTitleTextInput: {
     paddingLeft: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#333333',
     width: 300,
-    height: 50
+    height: 50,
   },
   addProjectButton: {
     width: 70,
@@ -134,7 +168,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: '#4285f4',
     alignSelf: 'center',
-    position: 'absolute'
-    
-  }
+    position: 'absolute',
+  },
 });

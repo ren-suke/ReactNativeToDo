@@ -1,13 +1,8 @@
-import React, { Component } from 'react';
-import { Image, StyleSheet } from 'react-native';
+import React, {Component} from 'react';
+import {Image, StyleSheet} from 'react-native';
 
 export default function LogoImage(props) {
-  return(
-    <Image 
-      source={props.imageSouce}
-      style={styles.logoImage}
-    />
-  )
+  return <Image source={props.imageSouce} style={styles.logoImage} />;
 }
 
 const styles = StyleSheet.create({
@@ -17,6 +12,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#4285f4',
     borderRadius: 50,
     borderColor: '#333',
-    borderWidth: 1
-  }
+    borderWidth: 1,
+  },
 });

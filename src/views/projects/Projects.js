@@ -1,54 +1,47 @@
-import React, { Component} from 'react'
+import React, {Component} from 'react';
 
 import ProjectsTemplate from './ProjectsTemplate';
 
 export default class Projects extends Component {
-
   constructor() {
-    super()
+    super();
 
     this.state = {
       isEditing: false,
-      deleteProjectIDs: []
-    }
+      deleteProjectIDs: [],
+    };
   }
 
   onClick() {
-    console.log('onclick')
+    console.log('onclick');
     this.props.navigation.navigate('Stack2');
   }
 
-  onPressEditButton() {
+  onPressEditButton() {}
 
-  }
-
-  onPressCancelButton() {
-
-  }
+  onPressCancelButton() {}
 
   onPressProjectCell(projectID) {
-    console.log(projectID)
+    console.log(projectID);
   }
 
   onPressProjectCellCheckBox(projectID) {
-    console.log(projectID)
+    console.log(projectID);
   }
 
   onPressFAB() {
-    console.log('pressed on fab')
+    console.log('pressed on fab');
   }
 
-  onPressDeleteButton(deleteProjectIDs) {
-
-  }
+  onPressDeleteButton(deleteProjectIDs) {}
 
   render() {
     return (
-      <ProjectsTemplate 
+      <ProjectsTemplate
         projects={projects}
-        isEditing={ this.state.isEditing }
-        onPressProjectCell={ this.onPressProjectCell }
+        isEditing={this.state.isEditing}
+        onPressProjectCell={this.onPressProjectCell}
       />
-    )
+    );
   }
 }
