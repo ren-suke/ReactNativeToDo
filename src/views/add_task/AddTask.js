@@ -27,7 +27,7 @@ import {
   Row,
 } from 'native-base';
 
-export default class AddTask extends Component {
+class AddTask extends Component {
   state = {
     area: 2,
     date: '2019-10-10',
@@ -47,36 +47,36 @@ export default class AddTask extends Component {
         </Header>
         <View>
           <View styles={styles.projectInputContainer}>
-            <View>
+            <TextInput
               style={styles.projectTitleTextInput}
               placeholder=" Your Task" />
-            </View>
+            {/* </TextInput> */}
             <Grid>
               <Row style={{height: 50}}>
-                <Col size="2">
+                <Col size={2}>
                   <Icon style={{alignSelf: 'center'}} name="pencil" />
                 </Col>
-                <Col size="3">
+                <Col size={3}>
                   <Text style={{lineHeight: 50, alignSelf: 'flex-start'}}>
                     プロジェクト
                   </Text>
                 </Col>
-                <Col size="5">
+                <Col size={5}>
                   <Text style={{lineHeight: 50, alignSelf: 'center'}}>
                     プロジェクト名
                   </Text>
                 </Col>
               </Row>
               <Row style={{height: 100}}>
-                <Col size="2">
+                <Col size={2}>
                   <Icon style={{alignSelf: 'center'}} name="pencil" />
                 </Col>
-                <Col size="3">
+                <Col size={3}>
                   <Text style={{lineHeight: 50, alignSelf: 'flex-start'}}>
                     種類
                   </Text>
                 </Col>
-                <Col size="5">
+                <Col size={5}>
                   <Row>
                     <TextInput placeholder="種類を追加" />
                   </Row>
@@ -93,15 +93,15 @@ export default class AddTask extends Component {
                 </Col>
               </Row>
               <Row style={{height: 50}}>
-                <Col size="2">
+                <Col size={2}>
                   <Icon style={{alignSelf: 'center'}} name="pencil" />
                 </Col>
-                <Col size="3">
+                <Col size={3}>
                   <Text style={{lineHeight: 50, alignSelf: 'flex-start'}}>
                     期限
                   </Text>
                 </Col>
-                <Col size="5">
+                <Col size={5}>
                   <DatePicker
                     style={{width: 200}}
                     date={this.state.date}
@@ -131,7 +131,7 @@ export default class AddTask extends Component {
             </Grid>
           </View>
         </View>
-        <Button style={styles.addProjectButton} />
+        <Button onPress={() => { console.log("onpress fab")}} style={styles.addProjectButton} />
       </Container>
     );
   }
@@ -171,3 +171,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
 });
+
+export default AddTask;

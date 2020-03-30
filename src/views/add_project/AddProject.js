@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {SafeAreaView} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, Provider} from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 
 import {addProject} from '../../store/action_creators/ProjectActionCreator';
@@ -9,7 +9,7 @@ import AddProjectTemplate from './AddProjectTemplate';
 class AddProject extends Component {
   constructor() {
     super();
-
+    console.log('AddProject Constructor')
     this.state = {
       fabDisabled: false,
       projectTitle: '',
@@ -18,7 +18,6 @@ class AddProject extends Component {
   }
 
   onPressProjectImageView = () => {
-    console.log('onPressProjectImageView');
     ImagePicker.launchImageLibrary({allowsEditing: true}, response => {
       if (response.error) {
         console.log(response.error);
@@ -71,13 +70,15 @@ class AddProject extends Component {
     };
 
     return (
-      <SafeAreaView style={{flex: 1}}>
-        <AddProjectTemplate
-          style={{backgroundColor: '#4285f4'}}
-          projectInputView={projectInputView}
-          fab={fab}
-        />
-      </SafeAreaView>
+      <Provider>
+        <SafeAreaView style={{flex: 1}}>
+          <AddProjectTemplate
+            style={{backgroundColor: '#4285f4'}}
+            projectInputView={projectInputView}
+            fab={fab}
+          />
+        </SafeAreaView>
+      </Provider>
     );
   }
 }
@@ -89,7 +90,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(AddProject);
+export default connect(null, mapDispatchToProps)(AddProject);

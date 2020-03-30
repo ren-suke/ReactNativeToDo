@@ -1,5 +1,5 @@
 {
-  "name": "RatelSubjectTodo",
+  "name": "todo",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -16,6 +16,7 @@
     "react-native": "0.61.5",
     "react-native-datepicker": "^1.7.2",
     "react-native-image-picker": "^2.3.1",
+    "react-native-navigation": "^6.3.0",
     "react-native-paper": "^3.6.0",
     "react-native-picker-select": "^6.6.0",
     "react-redux": "^7.2.0",

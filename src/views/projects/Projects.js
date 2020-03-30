@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import { SafeAreaView } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
 
-import {getProjects} from '../../store/action_creators/ProjectActionCreator'
+import {showProjectsScreen, onPressDeleteButton} from '../../store/action_creators/ProjectActionCreator'
 import ProjectsTemplate from './ProjectsTemplate';
+import { PROJECTS, PROJECTTASKS, ADDTASK, ADDPROJECT } from '../screens';
 
-export default class Projects extends Component {
+class Projects extends Component {
   constructor() {
     super();
 
@@ -14,31 +17,86 @@ export default class Projects extends Component {
     };
   }
 
-  onPressEditButton() {}
-
-  onPressCancelButton() {}
-
-  onPressProjectCell(projectID) {
-    console.log(projectID);
+  componentDidMount() {
+    this.props.showProjectsScreen()
   }
 
-  onPressProjectCellCheckBox(projectID) {
-    console.log(projectID);
+  onPressProjectCell = (projectId) => {
+    console.log(projectId)
   }
 
-  onPressFAB() {
-    console.log('pressed on fab');
+  onPressCheckBox = (projectId) => { 
+    console.log(projectId)
   }
 
-  onPressDeleteButton(deleteProjectIDs) {}
+  onPressEditButton = () => {
+    if(this.state.isEditing) {
+      this.setState({
+        deleteProjectIDs: []
+      });
+    }
+    this.setState({
+      isEditing: !this.state.isEditing
+    });
+  }
+
+  onPressFAB = () => {
+    Navigation.showModal({
+      stack: {
+        children: [{
+          component: {
+            name: ADDPROJECT,
+            options: {
+              topBar: {
+                title: {
+                  text: 'Modal'
+                }
+              }
+            }
+          }
+        }]
+      }
+    });
+  }
+
+  onPressDeleteButton = () => {
+    this.props.onPressDeleteButton(this.state.deleteProjectIDs);
+    this.setState({
+      isEditing: false
+    })
+  }
 
   render() {
+    const { projects } = this.props;
+    let _projects = [];
+    if(projects) {
+      _projects = projects.map(project => {
+        if(this.state.deleteProjectIDs.includes(project.id)) {
+          project.checkBox = { checked: true }
+        } else {
+          project.checkBox = { checked: false }
+        }
+      });
+    }
+
+    const projectCell = {
+      onPress: projectId=> this.onPressProjectCell(projectId),
+      checkBox: { onPress: projectId => this.onPressCheckBox(projectId) }
+    }
+    const deleteButton = {
+      onPress: () => { this.onPressDeleteButton() },
+      checkedCount: this.state.deleteProjectIDs.length
+    }
     return (
-      <ProjectsTemplate
-        projects={projects}
-        isEditing={this.state.isEditing}
-        onPressProjectCell={this.onPressProjectCell}
-      />
+      <SafeAreaView style={{flex:1}}>
+        <ProjectsTemplate
+          projects={_projects}
+          projectCell={projectCell}
+          fab={{onPress: () => { this.onPressFAB() } }}
+          deleteButton={deleteButton}
+          isEditing={this.state.isEditing}
+        />
+      </SafeAreaView>
     );
   }
 }
@@ -49,5 +107,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-//delete
-//celltap時
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showProjectsScreen: () => dispatch(showProjectsScreen()),
+    onPressDeleteButton: (deleteProjectIDs) => dispatch(onPressDeleteButton(deleteProjectIDs))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);

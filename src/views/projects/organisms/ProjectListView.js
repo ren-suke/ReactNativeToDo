@@ -4,7 +4,7 @@ import {FlatList, StyleSheet} from 'react-native';
 import ProjectCell from '../molecules/ProjectCell';
 
 export default function ProjectListView(props) {
-  const {projects, onPressProjectCell} = props;
+  const {projects, projectCell, isEditing, checkBox} = props;
   return (
     <FlatList
       style={{flex: 1}}
@@ -12,7 +12,9 @@ export default function ProjectListView(props) {
       renderItem={project => (
         <ProjectCell
           project={project}
-          onPressProjectCell={onPressProjectCell}
+          onPress={() => {projectCell.onPress()}}
+          isEditing={isEditing}
+          checkBox={projectCell.checkBox}
         />
       )}
       keyExtractor={project => project.id.toString()}

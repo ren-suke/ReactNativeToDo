@@ -4,8 +4,8 @@ export const ProjectSchema = {
   properties: {
     id: 'int',
     title: 'string',
-    all_tasks_count: {type: 'int', default: 0},
-    completed_tasks_count: {type: 'int', default: 0},
+    allTasksCount: {type: 'int', default: 0},
+    completedTasksCount: {type: 'int', default: 0},
     imageUri: 'string',
   },
 };

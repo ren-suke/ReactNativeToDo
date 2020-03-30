@@ -44,7 +44,7 @@ export function addTask(projectId, tagId, newTask, newTagTitle) {
         newTask.tag = tag;
         realm.write(() => {
           tag.tasks.push(newTask);
-          tag.project.all_tasks_count = tag.tasks.length;
+          tag.project.allTasksCount = tag.tasks.length;
         });
       }
 
@@ -68,9 +68,9 @@ export function changeTaskStatus(taskId, projectId, isCompleted) {
       realm.write(() => {
         task.isCompleted = isCompleted;
         if (isCompleted) {
-          project.completed_tasks_count = project.completed_tasks_count + 1;
+          project.completedTasksCount = project.completedTasksCount + 1;
         } else {
-          project.completed_tasks_count = project.completed_tasks_count - 1;
+          project.completedTasksCount = project.completedTasksCount - 1;
         }
         realm.close();
         return task;

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Image, StyleSheet} from 'react-native';
 
-export default function LogoImage(props) {
-  return <Image source={props.imageSouce} style={styles.logoImage} />;
+function LogoImage(props) {
+  const { source } = props;
+  return <Image source={source} style={styles.logoImage} />;
 }
 
 const styles = StyleSheet.create({
@@ -15,3 +16,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
 });
+
+export default LogoImage;

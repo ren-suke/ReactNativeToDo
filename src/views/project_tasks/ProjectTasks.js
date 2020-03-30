@@ -15,7 +15,7 @@ import {
 } from 'native-base';
 import {List} from 'react-native-paper';
 
-export default class ProjectTasks extends Component {
+class ProjectTasks extends Component {
   state = {
     expanded: true,
   };
@@ -131,3 +131,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
 });
+
+export default ProjectTasks;

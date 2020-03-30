@@ -7,18 +7,18 @@ import Paragraph from '../../common/atoms/Pragraph';
 import {CheckBox} from 'native-base';
 
 export default function ProjectCell(props) {
+  const { project, isEditing, onPress, checkBox} = props
   return (
-    <TouchableOpacity onPress={props.onPressProjectCell}>
+    <TouchableOpacity onPress={() => {onPress(project.id)}}>
       <View styles={styles.projectCell}>
-        {console.log(props.project.item)}
-        {/* { props.isEditing ? <CheckBox /> : null } */}
-        <LogoImage imageSource={props.project.item.imageSouce} />
-        <Title text={props.project.item.title} />
+        { isEditing ? <CheckBox checked={project.checkBox.checked} onPress={() => {checkBox.onPress(project.id)}}/> : null }
+        <LogoImage source={{uri: project.imageUri }} />
+        <Title text={project.title} />
         <Paragraph
           text={
-            props.project.item.allTasksCount +
+            project.allTasksCount +
             '/' +
-            props.project.item.completedTasksCount
+            project.completedTasksCount
           }
         />
       </View>
