@@ -49,7 +49,7 @@ class Projects extends Component {
             options: {
               topBar: {
                 title: {
-                  text: 'Modal'
+                  text: 'AddProject'
                 }
               }
             }
@@ -71,10 +71,13 @@ class Projects extends Component {
     let _projects = [];
     if(projects) {
       _projects = projects.map(project => {
+        let newProject = project;
         if(this.state.deleteProjectIDs.includes(project.id)) {
-          project.checkBox = { checked: true }
+          newProject.checkBox = { checked: true }
+          return newProject
         } else {
-          project.checkBox = { checked: false }
+          newProject.checkBox = { checked: false}
+          return newProject
         }
       });
     }

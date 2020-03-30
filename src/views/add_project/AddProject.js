@@ -70,15 +70,13 @@ class AddProject extends Component {
     };
 
     return (
-      <Provider>
-        <SafeAreaView style={{flex: 1}}>
-          <AddProjectTemplate
-            style={{backgroundColor: '#4285f4'}}
-            projectInputView={projectInputView}
-            fab={fab}
-          />
-        </SafeAreaView>
-      </Provider>
+      <SafeAreaView style={{flex: 1}}>
+        <AddProjectTemplate
+          style={{backgroundColor: '#4285f4'}}
+          projectInputView={projectInputView}
+          fab={fab}
+        />
+      </SafeAreaView>
     );
   }
 }

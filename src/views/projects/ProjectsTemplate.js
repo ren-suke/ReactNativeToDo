@@ -8,7 +8,7 @@ import FAB from '../common/atoms/FAB';
 
 function ProjectsTemplate(props) {
   const { projects, isEditing, projectCell, deleteButton, fab } = props;
-  
+
   return (
     <View style={{flex: 1}}>
       <ProjectListView

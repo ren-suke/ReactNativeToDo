@@ -10,7 +10,7 @@ import{PROJECTS, ADDPROJECT, PROJECTTASKS, ADDTASK} from './src/views/screens'
 
 const screens = [];
 screens.push({name: PROJECTS, component: Projects});
-screens.push({name: ADDPROJECT, conponent: AddProject});
+screens.push({name: ADDPROJECT, component: AddProject});
 screens.push({name: PROJECTTASKS, component: ProjectTasks});
 screens.push({name: ADDTASK, component: AddTask});
 
@@ -20,10 +20,7 @@ for(let screen of screens) {
     screen.name,
     () => withReduxProvider(screen.component),
   );
-  Navigation.registerComponentWithRedux()
 }
-
-AppRegistry.registerComponent(ADDPROJECT, () => AddProject);
 
 export const startApp = () => {
   Navigation.setRoot({

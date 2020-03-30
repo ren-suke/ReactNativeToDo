@@ -8,31 +8,45 @@ import {CheckBox} from 'native-base';
 
 export default function ProjectCell(props) {
   const { project, isEditing, onPress, checkBox} = props
+  console.log('---- imageuri');
+  console.log(project.item.imageUri);
   return (
-    <TouchableOpacity onPress={() => {onPress(project.id)}}>
-      <View styles={styles.projectCell}>
-        { isEditing ? <CheckBox checked={project.checkBox.checked} onPress={() => {checkBox.onPress(project.id)}}/> : null }
-        <LogoImage source={{uri: project.imageUri }} />
-        <Title text={project.title} />
-        <Paragraph
-          text={
-            project.allTasksCount +
-            '/' +
-            project.completedTasksCount
-          }
-        />
+    <TouchableOpacity style={styles.projectCellContainer} onPress={() => {onPress(project.item.id)}}>
+      <View style={styles.projectCell}>
+        { isEditing ? <CheckBox checked={project.item.checkBox.checked} onPress={() => {checkBox.onPress(project.item.id)}}/> : null }
+        <LogoImage source={{uri: project.item.imageUri }} />
+        <View style={styles.projectCellDescription}>
+          <Title text={project.item.title} />
+          <Paragraph
+            text={
+              project.item.allTasksCount +
+              '/' +
+              project.item.completedTasksCount
+            }
+          />
+        </View>
       </View>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
+  projectCellContainer: {
+    flex: 1,
+    height: 60,
+  },
   projectCell: {
-    paddingLeft: '10',
-    paddingRight: '10',
+    paddingLeft: 10,
+    paddingRight: 10,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  projectCellDescription: {
+    marginLeft: 10,
+    marginRight: 10,
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignContent: 'space-between',
-  },
+    justifyContent: 'space-between'
+  }
 });
