@@ -6,7 +6,7 @@ export const addProject = (title, imageSource) => {
     const newProject = {
       id: 0,
       title: title,
-      imageUri: imageSource.uri,
+      imageData: imageSource.uri,
     };
     createProject(newProject)
       .then(projects => {

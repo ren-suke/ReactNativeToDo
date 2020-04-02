@@ -1,21 +1,18 @@
 import React, {Component} from 'react';
-import {View, Image, StyleSheet, TextInput, ScrollView} from 'react-native';
+import {View, Image, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import {
-  Container,
-  Header,
-  Content,
-  Left,
-  Body,
-  Right,
   Button,
-  Icon,
-  Title,
   Switch,
-  Text,
 } from 'native-base';
 import {List} from 'react-native-paper';
+import ProjectCell from '../projects/molecules/ProjectCell';
 
 class ProjectTasks extends Component {
+  constructor(props) {
+    super(props)
+
+    console.log(props);
+  }
   state = {
     expanded: true,
   };
@@ -27,21 +24,14 @@ class ProjectTasks extends Component {
 
   render() {
     return (
-      <Container>
-        <Header>
-          <Left />
-          <Body>
-            <Title>タスク一覧</Title>
-          </Body>
-          <Right />
-        </Header>
+      <SafeAreaView>
+        <ProjectCell />
         <ScrollView>
           <List.Section>
             <List.Accordion
               title="Controlled Accordion"
               left={props => <List.Icon {...props} icon="folder" />}
-              expandedyarn
-              add
+              expanded={this.state.expanded}
               react-native-paper={this.state.expanded}
               onPress={this._handlePress}>
               {/* <List.Item title="First item" />
@@ -115,7 +105,7 @@ class ProjectTasks extends Component {
         </ScrollView>
 
         <Button style={styles.addProjectButton} />
-      </Container>
+      </SafeAreaView>
     );
   }
 }

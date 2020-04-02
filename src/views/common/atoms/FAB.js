@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {Button} from 'native-base';
 import {Icon} from 'native-base';
 
-export default function FAB(props) {
+function FAB(props) {
   const {onPress, disabled} = props;
   return (
     <Button
@@ -29,3 +29,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
 });
+
+export default FAB;

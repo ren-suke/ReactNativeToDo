@@ -22,7 +22,21 @@ class Projects extends Component {
   }
 
   onPressProjectCell = (projectId) => {
-    console.log(projectId)
+    Navigation.push(this.props.componentId, {
+      component: {
+        name: PROJECTTASKS,
+        passProps: {
+          projectId: projectId,
+        },
+        options: {
+          topBar: {
+            title: {
+              text: 'タスク一覧'
+            }
+          }
+        }
+      }
+    })
   }
 
   onPressCheckBox = (projectId) => { 

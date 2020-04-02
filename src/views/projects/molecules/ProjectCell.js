@@ -8,20 +8,18 @@ import {CheckBox} from 'native-base';
 
 export default function ProjectCell(props) {
   const { project, isEditing, onPress, checkBox} = props
-  console.log('---- imageuri');
-  console.log(project.item.imageUri);
   return (
-    <TouchableOpacity style={styles.projectCellContainer} onPress={() => {onPress(project.item.id)}}>
+    <TouchableOpacity style={styles.projectCellContainer} onPress={() => {onPress(project.id)}}>
       <View style={styles.projectCell}>
-        { isEditing ? <CheckBox checked={project.item.checkBox.checked} onPress={() => {checkBox.onPress(project.item.id)}}/> : null }
-        <LogoImage source={{uri: project.item.imageUri }} />
+        { isEditing ? <CheckBox checked={project.checkBox.checked} onPress={() => {checkBox.onPress(project.id)}}/> : null }
+        <LogoImage source={{uri: project.imageData }} />
         <View style={styles.projectCellDescription}>
-          <Title text={project.item.title} />
+          <Title text={project.title} />
           <Paragraph
             text={
-              project.item.allTasksCount +
+              project.allTasksCount +
               '/' +
-              project.item.completedTasksCount
+              project.completedTasksCount
             }
           />
         </View>

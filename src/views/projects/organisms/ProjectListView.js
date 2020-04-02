@@ -12,8 +12,8 @@ export default function ProjectListView(props) {
         data={projects}
         renderItem={project => (
           <ProjectCell
-            project={project}
-            onPress={() => {projectCell.onPress()}}
+            project={project.item}
+            onPress={projectId => {projectCell.onPress(projectId)}}
             isEditing={isEditing}
             checkBox={projectCell.checkBox}
           />

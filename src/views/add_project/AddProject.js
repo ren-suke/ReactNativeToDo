@@ -13,7 +13,7 @@ class AddProject extends Component {
     this.state = {
       fabDisabled: false,
       projectTitle: '',
-      projectImageSource: require('../../ren.png'),
+      projectImageSource: require('../../placeholder.png'),
     };
   }
 
@@ -22,17 +22,15 @@ class AddProject extends Component {
       if (response.error) {
         console.log(response.error);
       } else {
-        const imageSource = {uri: response.uri};
-        console.log(imageSource);
+        const imageData = 'data:image/png;base64,' + response.data
         this.setState({
-          projectImageSource: imageSource,
+          projectImageSource: {uri: imageData},
         });
       }
     });
   };
 
   onChangeProjectTitle = text => {
-    console.log(text);
     if (text.length !== 0) {
       this.setState({
         projectTitle: text,

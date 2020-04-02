@@ -5,7 +5,7 @@ import {ProjectSchema} from './RealmSchemas';
 export async function createProject(newProject) {
   const realmPath = Realm.schemaVersion(Realm.defaultPath);
   console.log('--------- Realm Path ---------');
-  console.log(realmPath);
+  console.log(Realm.defaultPath);
 
   const realm = await Realm.open({schema: [ProjectSchema], schemaVersion: SCHEMA_VERSION});
   realm.write(() => {
