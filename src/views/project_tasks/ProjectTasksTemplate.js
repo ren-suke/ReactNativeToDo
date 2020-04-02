@@ -1,13 +1,16 @@
 import { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import ProjectTaskListView from './molecules/ProjectTaskListView'
+import ProjectTaskListView from './molecules/ProjectTaskListView';
+import ProjectCell from '../common/molecules/ProjectCell';
 import FAB from '../common/atoms/FAB'
 
 function ProjectTasksTemplate(props) {
-  const { projectTaskListView, addButton } = props
+  const { projectCell, projectTaskListView, addButton } = props
   return(
     <View>
+      <ProjectCell 
+        project={projectCell.project} />
       <ProjectTaskListView
         tags={projectTaskListView.tags}
         taskSwitch={projectTaskListView.taskSwitch}

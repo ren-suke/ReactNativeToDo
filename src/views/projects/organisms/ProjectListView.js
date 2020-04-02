@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 
-import ProjectCell from '../molecules/ProjectCell';
+import ProjectCell from '../../common/molecules/ProjectCell';
 
 export default function ProjectListView(props) {
   const {projects, projectCell, isEditing, checkBox} = props;

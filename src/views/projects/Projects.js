@@ -105,7 +105,7 @@ class Projects extends Component {
       checkedCount: this.state.deleteProjectIDs.length
     }
     return (
-      <SafeAreaView style={{flex:1}}>
+      <SafeAreaView style={{flex: 1}}>
         <ProjectsTemplate
           projects={_projects}
           projectCell={projectCell}

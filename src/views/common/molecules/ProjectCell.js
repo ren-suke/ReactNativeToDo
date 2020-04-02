@@ -1,9 +1,9 @@
 import React from 'react';
 import {TouchableOpacity, View, StyleSheet} from 'react-native';
 
-import LogoImage from '../atoms/LogoImage';
-import Title from '../../common/atoms/Title';
-import Paragraph from '../../common/atoms/Pragraph';
+import LogoImage from '../../projects/atoms/LogoImage';
+import Title from '../atoms/Title';
+import Paragraph from '../atoms/Pragraph';
 import {CheckBox} from 'native-base';
 
 export default function ProjectCell(props) {
