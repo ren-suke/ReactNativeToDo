@@ -4,7 +4,7 @@ import { List } from 'react-native-paper';
 import TaskSwitch from '../atoms/TaskSwitch';
 
 const ProjectTaskListSection = (props) => {
-  const { tag, taskSwitchChanged } = props
+  const { tag, taskSwitch } = props
   const [isExpanded, setIsExpanded] = useState(false);
   return(
     <List.Accordion
@@ -17,7 +17,7 @@ const ProjectTaskListSection = (props) => {
           <List.Item 
             title={task.title}
             description={task.deadline.toString()}
-            right={props => <TaskSwitch isOn={tag.isCompleted} onChange={newValue => taskSwitchChanged(task.id, newValue)} />} />
+            right={props => <TaskSwitch isOn={tag.isCompleted} onChange={newValue => taskSwitch.onChange(task.id, newValue)} />} />
         })
       }
     </List.Accordion>

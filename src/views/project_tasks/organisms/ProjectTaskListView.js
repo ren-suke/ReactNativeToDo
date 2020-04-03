@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { List } from 'react-native-paper'
 
-import ProjectTaskListSection from '../organisms/ProjectTaskListSection';
+import ProjectTaskListSection from '../molecules/ProjectTaskListSection';
 
 function ProjectTaskListView(props) {
   const { tags, taskSwitch } = props;

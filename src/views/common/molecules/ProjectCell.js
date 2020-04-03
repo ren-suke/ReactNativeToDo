@@ -8,6 +8,7 @@ import {CheckBox} from 'native-base';
 
 export default function ProjectCell(props) {
   const { project, isEditing, onPress, checkBox} = props
+  if(project === undefined) { return(<View></View>)  }
   return (
     <TouchableOpacity style={styles.projectCellContainer} onPress={() => {onPress(project.id)}}>
       <View style={styles.projectCell}>

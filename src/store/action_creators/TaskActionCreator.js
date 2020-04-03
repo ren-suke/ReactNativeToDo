@@ -1,4 +1,4 @@
-import { GET_TAGS_SUCCESS, GET_TAGS_ERROR, CHANGE_TASK_STATUS_SUCCESS, CHANGE_TASK_STATUS_ERROR, ADD_TASK_SUCCESS, ADD_PROJECT_ERROR, ADD_TASK_ERROR} from '../ActionTypes';
+import {GET_TAGS_SUCCESS, GET_TAGS_ERROR, CHANGE_TASK_STATUS_SUCCESS, CHANGE_TASK_STATUS_ERROR, ADD_TASK_SUCCESS, ADD_PROJECT_ERROR, ADD_TASK_ERROR} from '../ActionTypes';
 import {getTags, changeTaskStatus, addTask} from '../../realm/TaskRealm';
 
 export const showProjectTasksScreen = (projectId) => {
