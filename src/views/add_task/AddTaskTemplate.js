@@ -4,14 +4,14 @@ import NewTaskInputView from './organisms/newTaskInputView';
 import FAB from '../common/atoms/FAB';
 
 function AddTaskTemplate(props) {
-  const {newTagInputView, addButton} = props
+  const {newTaskInputView, addButton} = props
   return(
     <View style={styles.container}>
       <NewTaskInputView 
-        taskTitleTextInput={newTagInputView.taskTitleTextInput}
-        projectSummaryView={newTagInputView.projectSummaryView}
-        tagInputView={newTagInputView.tagInputView}
-        deadlinePickerView={newTagInputView.deadlinePickerView} />
+        taskTitleTextInput={newTaskInputView.taskTitleTextInput}
+        projectSummaryView={newTaskInputView.projectSummaryView}
+        tagInputView={newTaskInputView.tagInputView}
+        deadlinePickerView={newTaskInputView.deadlinePickerView} />
       <FAB 
         onPress={() => {addButton.onPress()}}
         disabled={addButton.disabled} />
@@ -21,7 +21,7 @@ function AddTaskTemplate(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   }
 })
 

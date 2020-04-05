@@ -25,13 +25,13 @@ export const taskSwitchChanged = (projectId, taskId, newValue) => {
   }
 }
 
-export const addTaskButtonTapped = (projectId, tagId, taskTitle, taskDeadline, newTagTitle) => {
-  const newTask = {
-    title: taskTitle,
-    taskDeadline: taskDeadline
+export const addTaskButtonTapped = (newTask) => {
+  const task = {
+    title: newTask.title,
+    deadline: newTask.deadline
   }
   return (dispatch) => {
-    addTask(projectId, tagId, newTask, newTagTitle)
+    addTask(newTask.projectId, newTask.tagId, task, newTask.tagTitle)
       .then(newTags => {
         dispatch({ type: ADD_TASK_SUCCESS, newTags});
       })

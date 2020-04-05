@@ -35,8 +35,11 @@ export const startApp = () => {
                       visible: true,
                       leftButtons: [
                         {
-                          id: 'edit',
-                          title: 'edit'
+                          id: 'editButton',
+                          text: 'Edit',
+                          enabled: true,
+                          color: '#333333',
+                          systemItem: 'edit', // Sets a system bar button item as the icon. Matches UIBarButtonSystemItem naming. See below for details.
                         },
                       ],
                       title: {

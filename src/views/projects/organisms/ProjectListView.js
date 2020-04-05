@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
 
-import ProjectCell from '../../common/molecules/ProjectCell';
+import ProjectView from '../../common/molecules/ProjectView';
 
 export default function ProjectListView(props) {
   const {projects, projectCell, isEditing, checkBox} = props;
@@ -11,12 +11,13 @@ export default function ProjectListView(props) {
         style={{flex: 1, paddingTop: 10}}
         data={projects}
         renderItem={project => (
-          <ProjectCell
-            project={project.item}
-            onPress={projectId => {projectCell.onPress(projectId)}}
-            isEditing={isEditing}
-            checkBox={projectCell.checkBox}
-          />
+          <TouchableOpacity onPress={() => { projectCell.onPress(project.item.id) }}>
+            <ProjectView
+              project={project.item}
+              isEditing={isEditing}
+              checkBox={projectCell.checkBox}
+            />
+          </TouchableOpacity>
         )}
         keyExtractor={project => project.id}
       />

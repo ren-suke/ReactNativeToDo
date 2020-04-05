@@ -8,20 +8,30 @@ import ProjectsTemplate from './ProjectsTemplate';
 import { PROJECTS, PROJECTTASKS, ADDTASK, ADDPROJECT } from '../screens';
 
 class Projects extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       isEditing: false,
       deleteProjectIDs: [],
     };
+    Navigation.events().bindComponent(this);
   }
 
   componentDidMount() {
     this.props.showProjectsScreen()
   }
 
+  navigationButtonPressed({ buttonId }) {
+    if(buttonId == 'editButton') {
+      this.setState({
+        isEditing: !this.state.isEditing
+      })
+    }
+  }
+
   onPressProjectCell = (projectId) => {
+    console.log(projectId);
     Navigation.push(this.props.componentId, {
       component: {
         name: PROJECTTASKS,
@@ -39,8 +49,19 @@ class Projects extends Component {
     })
   }
 
-  onPressCheckBox = (projectId) => { 
-    console.log(projectId)
+  onPressCheckBox = (projectId) => {
+    if(this.state.deleteProjectIDs.includes(projectId)) {
+      const newDeleteProjectIds = this.state.deleteProjectIDs.filter(_projectId => {
+        _projectId != projectId
+      });
+      this.setState({
+        deleteProjectIDs: newDeleteProjectIds
+      })
+    } else {
+      this.setState({
+        deleteProjectIDs: this.state.deleteProjectIDs.concat(projectId)
+      })
+    }
   }
 
   onPressEditButton = () => {
@@ -63,7 +84,7 @@ class Projects extends Component {
             options: {
               topBar: {
                 title: {
-                  text: 'AddProject'
+                  text: 'プロジェクトを作成'
                 }
               }
             }
@@ -76,7 +97,8 @@ class Projects extends Component {
   onPressDeleteButton = () => {
     this.props.onPressDeleteButton(this.state.deleteProjectIDs);
     this.setState({
-      isEditing: false
+      isEditing: false,
+      deleteProjectIDs: []
     })
   }
 

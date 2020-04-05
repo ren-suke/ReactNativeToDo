@@ -1,4 +1,4 @@
-export const ProjectSchema = {
+const ProjectSchema = {
   name: 'Project',
   primaryKey: 'id',
   properties: {
@@ -10,7 +10,7 @@ export const ProjectSchema = {
   },
 };
 
-export const TagSchema = {
+const TagSchema = {
   name: 'Tag',
   primaryKey: 'id',
   properties: {
@@ -21,14 +21,16 @@ export const TagSchema = {
   },
 };
 
-export const TaskSchema = {
+const TaskSchema = {
   name: 'Task',
   primaryKey: 'id',
   properties: {
     id: 'int',
     tag: 'Tag',
     title: 'string',
-    deadline: 'date',
+    deadline: 'date?',
     isCompleted: {type: 'bool', default: false},
   },
 };
+
+export const SCHEMAS = [ProjectSchema, TagSchema, TaskSchema];

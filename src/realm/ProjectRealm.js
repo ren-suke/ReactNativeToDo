@@ -1,31 +1,33 @@
 import Realm from 'realm';
 import {SCHEMA_VERSION} from './RealmConfig';
-import {ProjectSchema} from './RealmSchemas';
+import {SCHEMAS} from './RealmSchemas';
 
 export async function createProject(newProject) {
-  const realmPath = Realm.schemaVersion(Realm.defaultPath);
+  console.log('SCHEMAS');
+  console.log(SCHEMAS);
   console.log('--------- Realm Path ---------');
   console.log(Realm.defaultPath);
 
-  const realm = await Realm.open({schema: [ProjectSchema], schemaVersion: SCHEMA_VERSION});
+  const realm = await Realm.open({schema: SCHEMAS, schemaVersion: SCHEMA_VERSION});
   realm.write(() => {
     const id = getLatestIdMaximum(realm);
     newProject.id = id;
     realm.create('Project', newProject);
   });
   const latestObjects = realm.objects('Project');
-  return Array.from(latestObjects);
+  const _latastObjects = Array.from(latestObjects);
+  return _latastObjects;
 }
 
 export async function getProjects() {
-  const realm = await Realm.open({schema: [ProjectSchema], schemaVersion: SCHEMA_VERSION});
+  const realm = await Realm.open({schema: SCHEMAS, schemaVersion: SCHEMA_VERSION});
   const projects = realm.objects('Project');
   const _projects = Array.from(projects);
   return _projects;
 }
 
 export async function deleteProjects(deleteProjectIDs) {
-  const realm = await Realm.open({schema: [ProjectSchema], schemaVersion: SCHEMA_VERSION})
+  const realm = await Realm.open({schema: SCHEMAS, schemaVersion: SCHEMA_VERSION})
   let projects = realm.objects('Project');
   for (let deleteProjectID of deleteProjectIDs) {
     let deleteProject = projects.filtered(`id = ${deleteProjectID}`);

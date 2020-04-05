@@ -12,7 +12,7 @@ class ProjectTasks extends Component {
   }
 
   componentDidMount() {
-    this.props.showProjectTasksScreen()
+    this.props.showProjectTasksScreen(this.props.projectId);
   }
 
   onChangeTaskSwitch = (taskId, newValue) => {
@@ -25,6 +25,9 @@ class ProjectTasks extends Component {
         children: [{
           component: {
             name: ADDTASK,
+            passProps: {
+              projectId: this.props.projectId,
+            },
             options: {
               topBar: {
                 title: {
@@ -47,11 +50,11 @@ class ProjectTasks extends Component {
     }
     return (
       <SafeAreaView style={{flex: 1}}>
-        <ProjectTasksTemplate 
+        <ProjectTasksTemplate
           projectCell={{project: this.props.project}}
           projectTaskListView={projectTaskListView}
           addButton={{onPress: () => {this.onPressFAB()}}}
-        />        
+        />
       </SafeAreaView>
     );
   }
@@ -60,7 +63,6 @@ class ProjectTasks extends Component {
 const mapStateToProps = (state, ownProps) => {
   const projectId = ownProps.projectId;
   const project = state.project.projects.filter(project => project.id == projectId)[0];
- 
   return {
     project: project,
     tags: state.task.tags
@@ -69,7 +71,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    showProjectTasksScreen: () => dispatch(showProjectTasksScreen()),
+    showProjectTasksScreen: (projectId) => dispatch(showProjectTasksScreen(projectId)),
     taskSwitchChanged: (taskId, newValue) => dispatch(taskSwitchChanged(ownProps.projectId, taskId, newValue))
   }
 }

@@ -1,17 +1,15 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import ProjectTaskListView from './molecules/ProjectTaskListView';
-import ProjectCell from '../common/molecules/ProjectCell';
+import ProjectTaskListView from './organisms/ProjectTaskListView';
+import ProjectView from '../common/molecules/ProjectView';
 import FAB from '../common/atoms/FAB'
 
 function ProjectTasksTemplate(props) {
   const { projectCell, projectTaskListView, addButton } = props
-  console.log(projectCell);
   return(
-    <View style={{flex: 1}}>
-      <ProjectCell 
-        style={{marginTop: 10}}
+    <View style={{flex: 1, paddingTop: 10}}>
+      <ProjectView
         project={projectCell.project} />
       <ProjectTaskListView
         tags={projectTaskListView.tags}

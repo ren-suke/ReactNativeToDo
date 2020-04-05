@@ -13,6 +13,7 @@ export const addProject = (title, imageSource) => {
         dispatch({type: ADD_PROJECT, projects});
       })
       .catch(error => {
+        console.log(error);
         dispatch({type: ADD_PROJECT_ERROR, error});
       });
   };

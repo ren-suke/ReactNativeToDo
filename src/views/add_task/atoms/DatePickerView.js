@@ -2,10 +2,9 @@ import React from 'react';
 import DatePicker from 'react-native-datepicker';
 
 function DatePickerView(props) {
-  const { date, onDateChange } = props
+  const { date, onDateChange } = props;
   return(
     <DatePicker
-      style={{width: 200}}
       date={date}
       mode="date"
       placeholder="期限を選択"
@@ -23,9 +22,7 @@ function DatePickerView(props) {
           marginLeft: 36,
         },
       }}
-      onDateChange={date => {
-        onDateChange(date);
-      }}
+      onDateChange={date => onDateChange(date)}
     />
   )
 }

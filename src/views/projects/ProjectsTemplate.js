@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {View, StyleSheet} from 'react-native';
-import { Button } from 'native-base';
+import { Text, Button } from 'native-base';
 
 import ProjectListView from './organisms/ProjectListView';
 import FAB from '../common/atoms/FAB';
@@ -16,8 +16,13 @@ function ProjectsTemplate(props) {
         projectCell={projectCell}
         isEditing={isEditing}
       />
-      { props.isEditing ? 
-        <Button block light onPress={() => {deleteButton.onPress()}}>Delete {deleteButton.checkedCount}</Button> :
+      { isEditing ? 
+        <Button 
+          block danger 
+          onPress={() => {deleteButton.onPress()}}
+          style={{marginHorizontal: 20}}>
+          <Text>Delete ({deleteButton.checkedCount})</Text>
+        </Button>:
         <FAB onPress={() => {fab.onPress()}} disabled={false}/>
       }
     </View>

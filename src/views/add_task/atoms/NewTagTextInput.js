@@ -15,8 +15,8 @@ function NewTagTextInput(props) {
 
 const styles = StyleSheet.create({
   newTagTextInput: {
-    height: 30,
-    flex: 1,
+    flex: 0.5,
+    paddingBottom: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#333',
     textAlign: 'center',

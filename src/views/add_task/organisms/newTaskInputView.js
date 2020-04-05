@@ -13,23 +13,34 @@ function NewTaskInputView(props) {
     deadlinePickerView} = props;
   return(
     <View style={styles.container}>
-      <TaskTitleTextInput 
+      <TaskTitleTextInput
+        style={styles.taskTitleTextInput}
         onChangeText={text => taskTitleTextInput.onChangeText(text)}
         text={taskTitleTextInput.text}/>
-      <ProjectSummaryView 
-        projectTitle={projectSummaryView.projectTitle}/>
-      <TagInputView 
-        newTagTextInput={tagInputView.newTagTextInput}
-        tagPickerView={tagInputView.tagPickerView}/>
-      <DeadlinePickerView 
-        datePickerView={deadlinePickerView.datePickerView}/>
+      <View style={styles.taskDetailInputsContainer}>
+        <ProjectSummaryView 
+          projectTitle={projectSummaryView.projectTitle}/>
+        <TagInputView 
+          newTagTextInput={tagInputView.newTagTextInput}
+          tagPickerView={tagInputView.tagPickerView}/>
+        <DeadlinePickerView 
+          datePickerView={deadlinePickerView.datePickerView}/>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.5,
+    flexDirection: 'column',
+    marginHorizontal: 20,
+  },
+  taskTitleTextInput: {
+    flex: 0.2
+  },
+  taskDetailInputsContainer: {
+    flex: 0.8,
     flexDirection: 'column'
   }
 })

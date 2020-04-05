@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {SafeAreaView} from 'react-native';
-import {connect, Provider} from 'react-redux';
+import {connect} from 'react-redux';
+import { Navigation } from 'react-native-navigation';
 import ImagePicker from 'react-native-image-picker';
-
 import {addProject} from '../../store/action_creators/ProjectActionCreator';
 import AddProjectTemplate from './AddProjectTemplate';
 
@@ -46,6 +46,7 @@ class AddProject extends Component {
   onPressFAB = () => {
     const {addProject} = this.props;
     addProject(this.state.projectTitle, this.state.projectImageSource);
+    Navigation.dismissModal(this.props.componentId);
   };
 
   render() {

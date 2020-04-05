@@ -1,50 +1,54 @@
 import Realm from 'realm';
 import {SCHEMA_VERSION} from './RealmConfig';
-import {TagSchema, TaskSchema, ProjectSchema} from './RealmSchemas';
+import {SCHEMAS} from './RealmSchemas';
 
-export async function getTags(projectID) {
+export async function getTags(projectId) {
   const realm = await Realm.open({
-    schema: [TagSchema, TaskSchema, ProjectSchema],
+    schema: SCHEMAS,
     schemaVersion: SCHEMA_VERSION,
   })
-  // 変数埋め込みのところにダブルクオーテーション必要かも
-  console.log(realm.path);
-  const tags = realm.objects('Tag').filtered(`project.id = ${projectID}`);
-  return tags;
+  const tags = realm.objects('Tag').filtered(`project.id = "${projectId}"`);
+  const _tags = tags.map(tag => ({...tag, tasks: Array.from(tag.tasks)}))
+  return Array.from(_tags);
 }
 
 export async function addTask(projectId, tagId, newTask, newTagTitle) {
   const realm = await Realm.open({
-    schema: [ProjectSchema, TagSchema, TaskSchema],
+    schema: SCHEMAS,
     schemaVersion: SCHEMA_VERSION,
   })
-  console.log(realm.path);
+
   const latestTaskIDMaximum = getLatestTaskIdMaximum(realm);
   newTask.id = latestTaskIDMaximum;
-
   if (tagId) {
     const tag = realm.objectForPrimaryKey('Tag', tagId);
     newTask.tag = tag;
-
-    realm.write(() => {
-      tag.tasks.push(newTask);
-      tag.project.all_tasks_count = tag.tasks.length;
-    });
+    try {
+      realm.write(() => {
+        tag.tasks.push(newTask);
+        tag.project.all_tasks_count = tag.tasks.length;
+      });
+    } catch (error) {
+      throw error;
+    }
   } else if (newTagTitle) {
-    const newTagId = addTag(realm, projectId, newTagTitle);
-    const tag = realm.objectForPrimaryKey('Tag', newTagId);
+    const tag = addTag(realm, projectId, newTagTitle);
     newTask.tag = tag;
-    realm.write(() => {
-      tag.tasks.push(newTask);
-      tag.project.allTasksCount = tag.tasks.length;
-    });
+    try {
+      realm.write(() => {
+        tag.tasks.push(newTask);
+        tag.project.allTasksCount = tag.tasks.length;
+      });
+    } catch (error) {
+      throw error
+    }
   }
   return getTags(projectId);
 }
 
 export async function changeTaskStatus(taskId, projectId, isCompleted) {
   const realm = await Realm.open({
-    schema: [ProjectSchema, TagSchema, TaskSchema],
+    schema: SCHEMAS,
     schemaVersion: SCHEMA_VERSION,
   })
   const task = realm.objectForPrimaryKey('Task', taskId);
@@ -56,23 +60,29 @@ export async function changeTaskStatus(taskId, projectId, isCompleted) {
     } else {
       project.completedTasksCount = project.completedTasksCount - 1;
     }
-    return getTags(projectId);
   });
+  return getTags(projectId);
 }
 
 function addTag(realm, projectId, newTagTitle) {
   const project = realm.objectForPrimaryKey('Project', projectId);
   const latestTaskIDMaximum = getLatestTagIdMaximum(realm);
-
-  realm.write(() => {
-    realm.create('Tag', {
-      id: latestTaskIDMaximum,
-      project: project,
-      title: newTagTitle,
-      tasks: [],
+  const newTag = {
+    id: latestTaskIDMaximum,
+    project: project,
+    title: newTagTitle,
+    tasks: []
+  }
+  try {
+    let tag = null;
+    realm.write(() => {
+      tag = realm.create('Tag', newTag);
     });
-    return latestTaskIDMaximum;
-  });
+    return tag;
+  } catch (error) {
+    console.log(error);
+    throw error
+  }
 }
 
 function getLatestTagIdMaximum(realm) {

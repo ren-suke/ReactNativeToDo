@@ -15,8 +15,7 @@ function TaskTitleTextInput(props) {
 
 const styles = StyleSheet.create({
   newTagTextInput: {
-    height: 50,
-    flex: 1,
+    height: 60,
     borderBottomWidth: 1,
     borderBottomColor: '#333',
     textAlign: 'center',
