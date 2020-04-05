@@ -1,4 +1,4 @@
-package com.ratelsubjecttodo;
+package com.reactnativetodo;
 
 import com.reactnativenavigation.NavigationActivity;
 

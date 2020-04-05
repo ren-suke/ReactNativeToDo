@@ -1,4 +1,4 @@
-package com.ratelsubjecttodo;
+package com.reactnativetodo;
 
 import android.app.Application;
 import android.content.Context;

@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'RatelSubjectTodo' do
-  # Pods for RatelSubjectTodo
+target 'ReactNativeToDo' do
+  # Pods for ReactNativeToDo
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -35,7 +35,7 @@ target 'RatelSubjectTodo' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
 
-  target 'RatelSubjectTodoTests' do
+  target 'ReactNativeToDoTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -43,10 +43,10 @@ target 'RatelSubjectTodo' do
   use_native_modules!
 end
 
-target 'RatelSubjectTodo-tvOS' do
-  # Pods for RatelSubjectTodo-tvOS
+target 'ReactNativeToDo-tvOS' do
+  # Pods for ReactNativeToDo-tvOS
 
-  target 'RatelSubjectTodo-tvOSTests' do
+  target 'ReactNativeToDo-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
