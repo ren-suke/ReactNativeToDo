@@ -1,5 +1,5 @@
 import {ADD_PROJECT, ADD_PROJECT_ERROR, GET_PROJECTS, GET_PROJECTS_ERROR, DELETE_PROJECTS, DELETE_PROJECTS_ERROR} from '../ActionTypes';
-import {createProject, getProjects, deleteProjects} from '../../realm/ProjectRealm';
+import {createProject, getProjects, deleteProjects, deleteTags} from '../../realm/ProjectRealm';
 
 export const addProject = (title, imageSource) => {
   return (dispatch) => {

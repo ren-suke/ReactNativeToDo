@@ -22,7 +22,12 @@ class Projects extends Component {
     this.props.showProjectsScreen()
   }
 
+  componentDidAppear() {
+    this.props.showProjectsScreen()
+  }
+
   navigationButtonPressed({ buttonId }) {
+    if(this.props.projects == undefined || this.props.projects.length == 0) { return }
     if(buttonId == 'editButton') {
       this.setState({
         isEditing: !this.state.isEditing
@@ -31,7 +36,6 @@ class Projects extends Component {
   }
 
   onPressProjectCell = (projectId) => {
-    console.log(projectId);
     Navigation.push(this.props.componentId, {
       component: {
         name: PROJECTTASKS,

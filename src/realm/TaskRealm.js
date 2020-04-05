@@ -7,9 +7,25 @@ export async function getTags(projectId) {
     schema: SCHEMAS,
     schemaVersion: SCHEMA_VERSION,
   })
-  const tags = realm.objects('Tag').filtered(`project.id = "${projectId}"`);
-  const _tags = tags.map(tag => ({...tag, tasks: Array.from(tag.tasks)}))
-  return Array.from(_tags);
+  const resultTags = realm.objects('Tag').filtered(`project.id = "${projectId}"`);
+  const tags = Array.from(resultTags.map(tag => ({...tag, tasks: Array.from(tag.tasks)})))
+
+  let taskLength = 0
+  let completedTaskLength = 0
+  for(let tag of tags) {
+    taskLength += tag.tasks.length
+    completedTaskLength += tag.tasks.filter(task => task.isCompleted).length
+  }
+  const project = realm.objectForPrimaryKey("Project", projectId);
+  try {
+    realm.write(() => {
+      project.allTasksCount = taskLength
+      project.completedTasksCount = completedTaskLength
+    })
+  } catch (error) {
+    throw error
+  } 
+  return tags;
 }
 
 export async function addTask(projectId, tagId, newTask, newTagTitle) {
@@ -26,7 +42,6 @@ export async function addTask(projectId, tagId, newTask, newTagTitle) {
     try {
       realm.write(() => {
         tag.tasks.push(newTask);
-        tag.project.all_tasks_count = tag.tasks.length;
       });
     } catch (error) {
       throw error;
@@ -37,7 +52,6 @@ export async function addTask(projectId, tagId, newTask, newTagTitle) {
     try {
       realm.write(() => {
         tag.tasks.push(newTask);
-        tag.project.allTasksCount = tag.tasks.length;
       });
     } catch (error) {
       throw error
@@ -52,14 +66,8 @@ export async function changeTaskStatus(taskId, projectId, isCompleted) {
     schemaVersion: SCHEMA_VERSION,
   })
   const task = realm.objectForPrimaryKey('Task', taskId);
-  const project = realm.objectForPrimaryKey('Project', projectId);
   realm.write(() => {
     task.isCompleted = isCompleted;
-    if (isCompleted) {
-      project.completedTasksCount = project.completedTasksCount + 1;
-    } else {
-      project.completedTasksCount = project.completedTasksCount - 1;
-    }
   });
   return getTags(projectId);
 }

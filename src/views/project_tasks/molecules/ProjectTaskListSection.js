@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import { List } from 'react-native-paper';
 
 import TaskSwitch from '../atoms/TaskSwitch';
@@ -32,6 +32,7 @@ const ProjectTaskListSection = (props) => {
             <List.Item 
               title={task.title}
               description={formatDate(task.deadline)}
+              left={props => <View {...props} style={{flex: 0.2}}></View>}
               right={props => <TaskSwitch {...props} isOn={task.isCompleted} onChange={newValue => taskSwitch.onChange(task.id, newValue)} />} />
           )
         })

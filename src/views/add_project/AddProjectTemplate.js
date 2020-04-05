@@ -12,7 +12,7 @@ function AddProjectTemplate(props) {
         projectImageView={projectInputView.projectImageView}
         projectTitleTextInput={projectInputView.projectTitleTextInput}
       />
-      <FAB onPress={fab.onPress} disabled={fab.isDisabled} />
+      <FAB onPress={fab.onPress} disabled={fab.disabled} />
     </View>
   );
 }

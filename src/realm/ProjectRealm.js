@@ -3,20 +3,13 @@ import {SCHEMA_VERSION} from './RealmConfig';
 import {SCHEMAS} from './RealmSchemas';
 
 export async function createProject(newProject) {
-  console.log('SCHEMAS');
-  console.log(SCHEMAS);
-  console.log('--------- Realm Path ---------');
-  console.log(Realm.defaultPath);
-
   const realm = await Realm.open({schema: SCHEMAS, schemaVersion: SCHEMA_VERSION});
   realm.write(() => {
     const id = getLatestIdMaximum(realm);
     newProject.id = id;
     realm.create('Project', newProject);
   });
-  const latestObjects = realm.objects('Project');
-  const _latastObjects = Array.from(latestObjects);
-  return _latastObjects;
+  return getProjects();
 }
 
 export async function getProjects() {
@@ -26,17 +19,23 @@ export async function getProjects() {
   return _projects;
 }
 
-export async function deleteProjects(deleteProjectIDs) {
+export async function deleteProjects(deleteProjectIds) {
   const realm = await Realm.open({schema: SCHEMAS, schemaVersion: SCHEMA_VERSION})
-  let projects = realm.objects('Project');
-  for (let deleteProjectID of deleteProjectIDs) {
-    let deleteProject = projects.filtered(`id = ${deleteProjectID}`);
-
-    realm.write(() => {
-      realm.delete(deleteProject[0]);
-    });
+  const projects = realm.objects('Project');
+  const tags = realm.objects('Tag')
+  for (let deleteProjectId of deleteProjectIds) {
+    const deleteProject = projects.filtered(`id = ${deleteProjectId}`);
+    const deleteTags = tags.filtered(`project.id = "${deleteProjectId}"`);
+    try {
+      realm.write(() => {
+        realm.delete(deleteProject);
+        realm.delete(deleteTags);
+        return getProjects();
+      });
+    } catch (error) {
+      throw error
+    }
   }
-  return projects;
 }
 
 // private function

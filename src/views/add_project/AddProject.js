@@ -11,7 +11,7 @@ class AddProject extends Component {
     super();
     console.log('AddProject Constructor')
     this.state = {
-      fabDisabled: false,
+      canAddProject: false,
       projectTitle: '',
       projectImageSource: require('../../placeholder.png'),
     };
@@ -25,22 +25,17 @@ class AddProject extends Component {
         const imageData = 'data:image/png;base64,' + response.data
         this.setState({
           projectImageSource: {uri: imageData},
+          canAddProject: this.validate()
         });
       }
     });
   };
 
   onChangeProjectTitle = text => {
-    if (text.length !== 0) {
-      this.setState({
-        projectTitle: text,
-        fabDisabled: true,
-      });
-    } else {
-      this.setState({
-        projectTitle: text,
-      });
-    }
+    this.setState({
+      projectTitle: text,
+      canAddProject: this.validate()
+    });
   };
 
   onPressFAB = () => {
@@ -48,6 +43,10 @@ class AddProject extends Component {
     addProject(this.state.projectTitle, this.state.projectImageSource);
     Navigation.dismissModal(this.props.componentId);
   };
+
+  validate = () => {
+    return this.state.projectTitle != '' || this.state.imageSource != require('../../placeholder.png');
+  }
 
   render() {
     const projectInputView = {
@@ -65,7 +64,7 @@ class AddProject extends Component {
 
     const fab = {
       onPress: this.onPressFAB,
-      disabled: this.state.fabDisabled,
+      disabled: !this.state.canAddProject,
     };
 
     return (
